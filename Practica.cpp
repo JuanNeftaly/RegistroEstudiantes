@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 
+// Variable struct para el manejo de varios datos
 struct Nodo
 {
     string Nombre;
@@ -12,13 +13,14 @@ struct Nodo
     struct Nodo *siguiente;
 } personas;
 
+// Iniciando valor de la lista
 struct Nodo *lista = NULL;
 
-// Solicitar datos
-void insertar_Datos();
-void Struct_Asignacion(string Name, string ID);
+// Funciones que solicitan los datos
+void insertar_Datos();                          // Pide los datos y almaneca en fichero (archivo.txt)
+void Struct_Asignacion(string Name, string ID); // Toma los datos y los guarda a un struct
 // Lectura de ficheros
-void Lectura_Datos();
+void Lectura_Datos(); // lee los datos de los ficheros
 
 int main()
 {
@@ -62,13 +64,15 @@ int main()
 }
 void insertar_Datos()
 {
-    ofstream Nombres_Archivo, Carnet_Archivo;
-    string Estudiante;
-    string ID;
+    ofstream Nombres_Archivo, Carnet_Archivo; // Variable para poner las direcciones de los .txt
+    string Estudiante;                        // Variable que almacena Nombres de los ficheros
+    string ID;                                // Variable que almacena los carnet de los estudiantes del fichero
 
+    // Varible asignada a el archivo ("Nombre del archivo en cuestion", Funcion del fichero en este caso Escritura)
     Nombres_Archivo.open("Estudiantes.txt", ios::app);
     Carnet_Archivo.open("Carnet.txt", ios::app);
 
+    // Condicional por si los archivos no se encuentran o estan dañados
     if (Nombres_Archivo.fail() && Carnet_Archivo.fail())
     {
         cout << "error" << endl;
@@ -81,9 +85,11 @@ void insertar_Datos()
     cout << "Carnet: ";
     getline(cin, ID);
 
+    // guarda los datos en el fichero
     Nombres_Archivo << Estudiante << endl;
     Carnet_Archivo << ID << endl;
 
+    // se cierran los archivos
     Nombres_Archivo.close();
     Carnet_Archivo.close();
 }
